@@ -75,6 +75,9 @@ def augment_images(input_dir, output_dir):
                     flipped = img.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
                     flipped.save(os.path.join(output_folder, f"{os.path.splitext(file)[0]}_flipV.jpg"))
 
+                    # 3. Keeping the original image
+                    img.save(os.path.join(output_folder, file))
+
                 except Exception as e:
                     print(f"Error processing {input_path}: {e}")
 
@@ -83,11 +86,12 @@ def augment_images(input_dir, output_dir):
 def main():
   # path = download_dataset()
   path = "dataset"
-  output_path = "resized_dataset"
-  resize_images(path+"/Training", output_path+"/Training", size=(80, 80))
-  resize_images(path+"/Testing", output_path+"/Testing", size=(80, 80))
-  augment_images("dataset/Training", "dataset/Training")
-  augment_images("dataset/Testing", "dataset/Testing")
+  resized_images_path = "resized_dataset"
+  augmented_images_path = "augmented_dataset"
+  resize_images(path+"/Training", resized_images_path+"/Training", size=(80, 80))
+  resize_images(path+"/Testing", resized_images_path+"/Testing", size=(80, 80))
+  augment_images(resized_images_path+"/Training", augmented_images_path+"/Training")
+  augment_images(resized_images_path+"/Testing", augmented_images_path+"/Testing")
 
 # to run main function
 if __name__=="__main__":
