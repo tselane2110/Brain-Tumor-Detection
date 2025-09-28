@@ -91,7 +91,6 @@ def main():
   resize_images(path+"/Training", resized_images_path+"/Training", size=(80, 80))
   resize_images(path+"/Testing", resized_images_path+"/Testing", size=(80, 80))
   augment_images(resized_images_path+"/Training", augmented_images_path+"/Training")
-  augment_images(resized_images_path+"/Testing", augmented_images_path+"/Testing")
 
 # to run main function
 if __name__=="__main__":
